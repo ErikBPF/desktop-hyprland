@@ -65,13 +65,3 @@
     state: started
     enabled: yes
   become: true
-
-- name: start lightdm
-  tags:
-    - full-install
-    - users
-  ansible.builtin.service:
-    name: lightdm
-    state: started
-    enabled: yes
-  become: true
