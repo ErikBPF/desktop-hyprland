@@ -40,9 +40,7 @@
     - include_tasks: tasks/develop.yml
     - include_tasks: tasks/productivity.yml
     - include_tasks: tasks/terminal.yml
-    - include_tasks: tasks/wm-packages.yml
     - include_tasks: tasks/personal-config.yml
     - include_tasks: tasks/ssh.yml
-    - include_tasks: tasks/yay-packages.yml
     - include_tasks: tasks/start-services.yml
     - include_tasks: tasks/fish.yml
