@@ -31,8 +31,8 @@
 
   with_items:
     - {
-        src: "hyprland/",
-        dest: "{{ lookup('env', 'HOME') }}/.config/hyprland/",
+        src: "hypr/",
+        dest: "{{ lookup('env', 'HOME') }}/.config/hypr/",
         mode: 0755,
       }
 
