@@ -34,11 +34,3 @@
     state: present
     update_cache: false
   ignore_errors: false
-
-- name: copy .xprofile
-  tags:
-    - full-install
-    - users
-  copy: src={{ item.src }} dest={{ item.dest }}
-  with_items:
-    - { src: ".xprofile", dest: "{{ lookup('env', 'HOME') }}/.xprofile" }
