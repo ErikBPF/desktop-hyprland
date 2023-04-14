@@ -82,15 +82,20 @@ tooltip label{
 
 #cpu, #custom-lock_screen, #temperature, #custom-launch_wofi {
     border-radius: 10px 0px 0px 10px;
+    margin-left: 10px;
 }
 
-#custom-light_dark, #custom-power_btn #pulseaudio.microphone, #clock {
+#custom-light_dark, #custom-power_btn, #pulseaudio.microphone, #clock {
     border-radius: 0px 10px 10px 0px;
     margin-right: 10px;
 }
 
 #temperature.critical {
     color: #e92d4d;
+}
+
+#custom-power_btn {
+    padding-right: 10px;
 }
 
 
