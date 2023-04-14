@@ -1,0 +1,30 @@
+- name: Install git
+  tags:
+    - full-install
+    - light-install
+    - git
+  package:
+    name: git
+    state: present
+    update_cache: false
+  become: true
+
+- name: Git personal setup email
+  tags:
+    - full-install
+    - light-install
+    - git
+  community.general.git_config:
+    name: user.email
+    scope: global
+    value: "{{ personal_email }}"
+
+- name: Git personal setup name
+  tags:
+    - full-install
+    - light-install
+    - git
+  community.general.git_config:
+    name: user.name
+    scope: global
+    value: "{{ fullname }}"

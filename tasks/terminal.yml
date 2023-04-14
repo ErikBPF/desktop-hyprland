@@ -1,0 +1,22 @@
+- name: install terminal related packages
+  tags:
+    - full-install
+    - light-install
+    - packages
+  kewlfft.aur.aur:
+    name:
+      - wget
+      - fish
+      - kitty
+      - fzf
+      - bat
+      - exa
+      - find-the-command
+      - nano
+      - neofetch
+      - btop
+      - nvtop
+    use: yay
+    state: present
+    update_cache: false
+  ignore_errors: false

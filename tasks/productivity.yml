@@ -1,0 +1,33 @@
+- name: install productivity related packages
+  tags:
+    - full-install
+    - light-install
+    - packages
+  kewlfft.aur.aur:
+    name:
+      - qtile
+      - wget
+      - authy
+      - nordpass-bin
+      - flameshot
+      - nfs-utils
+      - cups
+      - hplip
+      - ghostscript
+      - gsfonts
+      - libcups
+      - libsecret
+      - discord
+      - brave-bin
+      #- spotify
+      - teams
+      - unzip
+      - unrar
+      - p7zip
+      - unarchiver
+      - gparted
+      - onlyoffice-bin
+    use: yay
+    state: present
+    update_cache: false
+  ignore_errors: false

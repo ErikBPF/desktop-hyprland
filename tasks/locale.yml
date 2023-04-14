@@ -1,0 +1,30 @@
+- name: Install locale package
+  tags:
+    - full-install
+    - light-install
+    - locale
+  package:
+    name:
+      - locales
+    state: present
+  become: true
+  when: ansible_distribution == "Ubuntu"
+
+- name: Set timezone to "{{ timezone }}"
+  tags:
+    - full-install
+    - light-install
+    - timezone
+  community.general.timezone:
+    name: "{{ timezone }}"
+  become: true
+
+- name: Ensure the locale exists
+  tags:
+    - full-install
+    - light-install
+    - locale
+  community.general.locale_gen:
+    name: "{{ locale }}"
+    state: present
+  become: true

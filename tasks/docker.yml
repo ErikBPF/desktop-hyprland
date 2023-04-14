@@ -1,0 +1,32 @@
+---
+- name: Install docker packages
+  tags:
+    - full-install
+    - docker
+  kewlfft.aur.aur:
+    name:
+      - docker
+      - docker-compose
+    use: yay
+    state: present
+    update_cache: false
+  become: true
+
+- name: start docker
+  tags:
+    - full-install
+    - docker
+  ansible.builtin.service:
+    name: docker
+    state: started
+    enabled: true
+  become: true
+
+- name: add the user {{ lookup('env', 'USER') }} to the docker group
+  tags:
+    - full-install
+    - docker
+  ansible.builtin.user:
+    name: "{{ lookup('env', 'USER') }}"
+    group: docker
+  become: true

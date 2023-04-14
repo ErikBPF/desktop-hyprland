@@ -1,0 +1,41 @@
+- name: install development packages
+  tags:
+    - full-install
+    - light-install
+    - packages
+  kewlfft.aur.aur:
+    name:
+      - wget
+      - base-devel
+      - libsecret
+      - openvpn
+      - python-pip
+      - net-tools
+      - pkgfile
+      - postgresql-libs
+      - dbeaver
+      - postman-bin
+      - dashbinsh
+      - unixodbc
+      - azure-cli-bin
+      - visual-studio-code-insiders-bin
+      - baobab
+      - dnsmasq
+      - openssh
+      - dhclient
+      - dialog
+      - wpa_supplicant
+      - wireless_tools
+      - netctl
+      - inetutils
+      - openssh
+      - ntfs-3g
+      - nfs-utils
+      - openvpn
+      - ntfs-3g
+      - e2fsprogs
+      - smartmontools
+    use: yay
+    state: present
+    update_cache: false
+  ignore_errors: false

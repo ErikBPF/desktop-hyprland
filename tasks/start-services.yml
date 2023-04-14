@@ -1,0 +1,77 @@
+- name: adding existing user erik to group docker
+  user:
+    name: erik
+    groups: docker
+    append: yes
+  become: true
+
+- name: adding existing user erik to group libvirt
+  user:
+    name: erik
+    groups: libvirt
+    append: yes
+  become: true
+
+- name: adding existing user erik to group audio
+  user:
+    name: erik
+    groups: audio
+    append: yes
+  become: true
+
+- name: adding existing user erik to group video
+  user:
+    name: erik
+    groups: video
+    append: yes
+  become: true
+
+- name: start bluetooth.service
+  tags:
+    - full-install
+    - users
+  ansible.builtin.service:
+    name: bluetooth.service
+    state: started
+    enabled: yes
+  become: true
+
+- name: start cups.service
+  tags:
+    - full-install
+    - users
+  ansible.builtin.service:
+    name: cups.service
+    state: started
+    enabled: yes
+  become: true
+
+- name: start wpa_supplicant.service
+  tags:
+    - full-install
+    - users
+  ansible.builtin.service:
+    name: wpa_supplicant.service
+    state: started
+    enabled: yes
+  become: true
+
+- name: start NetworkManager.service
+  tags:
+    - full-install
+    - users
+  ansible.builtin.service:
+    name: NetworkManager.service
+    state: started
+    enabled: yes
+  become: true
+
+- name: start lightdm
+  tags:
+    - full-install
+    - users
+  ansible.builtin.service:
+    name: lightdm
+    state: started
+    enabled: yes
+  become: true

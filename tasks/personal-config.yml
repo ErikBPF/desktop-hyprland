@@ -1,0 +1,134 @@
+- name: make XDG compliant folders
+  command: "{{ item }}"
+  become: True
+  with_items:
+    - xdg-user-dirs-update
+    - echo >> /etc/profile
+    - echo 'export XDG_CONFIG_HOME="$HOME/.config"' >> /etc/profile
+    - echo 'export XDG_CACHE_HOME="$HOME/.cache"' >> /etc/profile
+    - echo 'export XDG_DATA_HOME="$HOME/.local/share"' >> /etc/profile
+    - echo 'export XDG_STATE_HOME="$HOME/.local/state"' >> /etc/profile
+    - echo 'export GOPATH="$XDG_DATA_HOME/go"' >> /etc/profile
+    - echo 'export CARGO_HOME="$XDG_DATA_HOME/cargo"' >> /etc/profile
+    - echo 'export LESSHISTFILE="$XDG_CONFIG_HOME/less/history"' >> /etc/profile
+    - echo 'export LESSKEY="$XDG_CONFIG_HOME/less/keys"' >> /etc/profile
+    - echo 'export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm"' >> /etc/profile
+
+- name: make hyprland config folder
+  tags:
+    - full-install
+    - users
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.config/hyprland"
+    recurse: yes
+    state: directory
+
+- name: copy hyprland files
+  tags:
+    - full-install
+    - users
+  copy: src={{ item.src }} dest={{ item.dest }}
+
+  with_items:
+    - {
+        src: "hyprland/",
+        dest: "{{ lookup('env', 'HOME') }}/.config/hyprland/",
+        mode: 0755,
+      }
+
+- name: make fish config folder
+  tags:
+    - full-install
+    - users
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.config/fish"
+    recurse: yes
+    state: directory
+
+- name: copy fish files
+  tags:
+    - full-install
+    - users
+  copy: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+    - { src: "fish/ftc.fish", dest: "/usr/share/doc/find-the-command/ftc.fish" }
+    - {
+        src: "fish/config.fish",
+        dest: "{{ lookup('env', 'HOME') }}/.config/fish/config.fish",
+      }
+    - {
+        src: "fish/fish_variables",
+        dest: "{{ lookup('env', 'HOME') }}/.config/fish/fish_variables",
+      }
+
+- name: make kitty config folder
+  tags:
+    - full-install
+    - users
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.config/kitty"
+    recurse: yes
+    state: directory
+
+- name: copy kitty files
+  tags:
+    - full-install
+    - users
+  copy: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+    - {
+        src: "kitty/diff.conf",
+        dest: "{{ lookup('env', 'HOME') }}/.config/kitty/diff.conf",
+      }
+    - {
+        src: "kitty/dracula.conf",
+        dest: "{{ lookup('env', 'HOME') }}/.config/kitty/dracula.conf",
+      }
+    - {
+        src: "kitty/kitty.conf",
+        dest: "{{ lookup('env', 'HOME') }}/.config/kitty/kitty.conf",
+      }
+
+- name: make flameshot config folder
+  tags:
+    - full-install
+    - users
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.config/flameshot"
+    recurse: yes
+    state: directory
+
+- name: copy flameshot files
+  tags:
+    - full-install
+    - users
+  copy: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+    - {
+        src: "flameshot/flameshot.ini",
+        dest: "{{ lookup('env', 'HOME') }}/.config/flameshot/flameshot.ini",
+      }
+
+- name: make btop config folder
+  tags:
+    - full-install
+    - users
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.config/btop/themes"
+    recurse: yes
+    state: directory
+
+- name: copy btop files
+  tags:
+    - full-install
+    - users
+  copy: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+    - {
+        src: "btop/themes/dracula.theme",
+        dest: "{{ lookup('env', 'HOME') }}/.config/btop/themes/dracula.theme",
+      }
+    - {
+        src: "btop/btop.conf",
+        dest: "{{ lookup('env', 'HOME') }}/.config/btop/btop.conf",
+      }

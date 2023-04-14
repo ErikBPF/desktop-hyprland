@@ -1,0 +1,41 @@
+---
+- name: Set python_pip variable when distribution is Archlinux (if necessary)
+  tags:
+    - full-install
+    - light-install
+    - packages
+  ansible.builtin.set_fact:
+    python_pip: python-pip
+  when: ansible_distribution == "Archlinux"
+
+- name: install ansible-galaxy collections install package dependencies
+  tags:
+    - full-install
+    - light-install
+    - aur
+    - collections-install
+  ansible.builtin.package:
+    name:
+      - "{{ python_pip }}"
+      - python-virtualenv
+    state: present
+    update_cache: true
+  become: true
+
+- name: install python packages
+    - collections-install
+  ansible.builtin.pip:
+    name:
+      - psutil
+      - Mpris2
+      - dbus-next
+    state: present
+
+- name: Install collection kewlfft.aur
+  tags:
+    - full-install
+    - aur
+    - collections-install
+  community.general.ansible_galaxy_install:
+    type: collection
+    name: kewlfft.aur

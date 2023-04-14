@@ -1,0 +1,72 @@
+- name: Remove packages
+  tags:
+    - full-install
+    - light-install
+    - packages
+  package:
+    name:
+      - qemu-desktop
+      - gnome-virtualboxes
+      - virtualbox-guest-utils-nox
+    state: absent
+    update_cache: no
+  become: true
+
+- name: Install KVM/QEMU packages
+  tags:
+    - full-install
+    - light-install
+    - libvirt
+  package:
+    name:
+      - qemu-base
+      - libvirt
+      - virt-manager
+      - spice-vdagent
+    state: present
+    update_cache: false
+  become: true
+
+- name: Ensure group libvirtd exists
+  tags:
+    - full-install
+    - light-install
+    - libvirt
+  ansible.builtin.group:
+    name: libvirtd
+    state: present
+  become: true
+
+- name: add the user "{{ lookup('env', 'USER') }}" to the libvirt group
+  tags:
+    - full-install
+    - light-install
+    - libvirt
+  ansible.builtin.user:
+    name: "{{ lookup('env', 'USER') }}"
+    group: libvirtd
+  become: true
+
+- name: copy file qemu.conf to /etc/libvirt
+  tags:
+    - full-install
+    - light-install
+    - libvirt
+  copy:
+    src: qemu.conf
+    dest: /etc/libvirt
+    owner: root
+    group: root
+    mode: 0644
+  become: true
+
+- name: start libvirt
+  tags:
+    - full-install
+    - light-install
+    - libvirt
+  ansible.builtin.service:
+    name: libvirtd
+    state: started
+    enabled: yes
+  become: true

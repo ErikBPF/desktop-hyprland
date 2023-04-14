@@ -1,0 +1,44 @@
+- name: copy file vconsole.conf
+  tags:
+    - full-install
+    - light-install
+    - keyboard
+  copy:
+    src: vconsole.conf
+    dest: /etc
+    owner: root
+    group: root
+    mode: 0644
+  become: true
+
+- name: Download us intl layout keyboard
+  tags:
+    - full-install
+    - light-install
+    - anki
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/raelgc/win_us_intl/master/.XCompose
+    dest: "{{ lookup('env', 'HOME') }}"
+    force: true
+    mode: 0777
+
+- name: install uim
+  tags:
+    - full-install
+    - light-install
+    - packages
+  kewlfft.aur.aur:
+    name:
+      - uim
+    use: yay
+    state: present
+    update_cache: false
+  ignore_errors: false
+
+- name: copy .xprofile
+  tags:
+    - full-install
+    - users
+  copy: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+    - { src: ".xprofile", dest: "{{ lookup('env', 'HOME') }}/.xprofile" }

@@ -1,0 +1,38 @@
+- name: make ssh folder
+  tags:
+    - full-install
+    - users
+  become: true
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.ssh"
+    recurse: yes
+    mode: 751
+    state: directory
+
+- name: copy ssh files
+  tags:
+    - full-install
+    - users
+  copy: src={{ item.src }} dest={{ item.dest }}
+  become: true
+  with_items:
+    - {
+        src: "ssh/id_rsa",
+        dest: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa",
+        mode: 500,
+      }
+    - {
+        src: "ssh/id_rsa.pub",
+        dest: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa.pub",
+        mode: 751,
+      }
+    - {
+        src: "ssh/id_ed25519",
+        dest: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519",
+        mode: 500,
+      }
+    - {
+        src: "ssh/id_ed25519.pub",
+        dest: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519.pub",
+        mode: 751,
+      }

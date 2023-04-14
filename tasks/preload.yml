@@ -1,0 +1,26 @@
+---
+- name: Install preload package when distribution is Archlinux
+  tags:
+    - full-install
+    - light-install
+    - preload
+  kewlfft.aur.aur:
+    name:
+      - preload
+    use: yay
+    state: present
+    update_cache: true
+  when: ansible_distribution == "Archlinux"
+
+- name: copy file preload.conf to /etc
+  tags:
+    - full-install
+    - light-install
+    - preload
+  ansible.builtin.copy:
+    src: preload.conf
+    dest: /etc
+    owner: root
+    group: root
+    mode: 0644
+  become: true

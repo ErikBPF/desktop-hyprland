@@ -1,0 +1,32 @@
+- name: create ansible user
+  tags:
+    - full-install
+    - light-install
+    - users
+    - ansible
+  user:
+    name: ansible
+    system: yes
+  become: true
+
+- name: copy sudoers_ansible
+  tags:
+    - full-install
+    - users
+    - ansible
+    - light-install
+  copy: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+    - { src: 'sudoers_ansible', dest: '/etc/sudoers.d/ansible' }
+    - { src: 'sudoers_erik', dest: '/etc/sudoers.d/erik', mode: 0440 }
+  become: true
+
+# - name: Clone ansible repository
+#   tags:
+#     - full-install
+#     - light-install
+#     - ansible
+#   ansible.builtin.git:
+#     repo: git@github.com:ErikBPF/ansible.git
+#     dest: "{{ lookup('env', 'HOME') }}/.config/ansible"
+#     accept_hostkey: yes

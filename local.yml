@@ -1,0 +1,48 @@
+---
+- hosts: localhost
+  connection: localhost
+  gather_facts: true
+  pre_tasks:
+    - name: Update cache of package manager
+      tags:
+        - full-install
+        - light-install
+        - packages
+        - always
+      package:
+        update_cache: true
+      become: true
+
+    - name: "Gathering Facts (Task)"
+      setup:
+      tags: ["packages", "full-install", "light-install", "locale", "preload"]
+      when: ansible_facts == {}
+
+  # - hosts: all
+  #   tags: base
+  #   become: true
+  #   roles:
+  #     - base
+
+  tasks:
+    - include_tasks: tasks/collections-install.yml
+    - include_tasks: tasks/ansible.yml
+    - include_tasks: tasks/aur-packages.yml
+    - include_tasks: tasks/keyboard-layout.yml
+    - include_tasks: tasks/locale.yml
+    - include_tasks: tasks/git.yml
+    - include_tasks: tasks/packages.yml
+    - include_tasks: tasks/audio.yml
+    - include_tasks: tasks/libvirt.yml
+    - include_tasks: tasks/preload.yml
+    - include_tasks: tasks/docker.yml
+    - include_tasks: tasks/kubernetes.yml
+    - include_tasks: tasks/develop.yml
+    - include_tasks: tasks/productivity.yml
+    - include_tasks: tasks/terminal.yml
+    - include_tasks: tasks/wm-packages.yml
+    - include_tasks: tasks/personal-config.yml
+    - include_tasks: tasks/ssh.yml
+    - include_tasks: tasks/yay-packages.yml
+    - include_tasks: tasks/start-services.yml
+    - include_tasks: tasks/fish.yml
