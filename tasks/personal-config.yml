@@ -52,14 +52,7 @@
   copy: src={{ item.src }} dest={{ item.dest }}
   with_items:
     - { src: "fish/ftc.fish", dest: "/usr/share/doc/find-the-command/ftc.fish" }
-    - {
-        src: "fish/config.fish",
-        dest: "{{ lookup('env', 'HOME') }}/.config/fish/config.fish",
-      }
-    - {
-        src: "fish/fish_variables",
-        dest: "{{ lookup('env', 'HOME') }}/.config/fish/fish_variables",
-      }
+    - { src: "fish/", dest: "{{ lookup('env', 'HOME') }}/.config/fish/" }
 
 - name: make kitty config folder
   tags:
@@ -76,18 +69,7 @@
     - users
   copy: src={{ item.src }} dest={{ item.dest }}
   with_items:
-    - {
-        src: "kitty/diff.conf",
-        dest: "{{ lookup('env', 'HOME') }}/.config/kitty/diff.conf",
-      }
-    - {
-        src: "kitty/dracula.conf",
-        dest: "{{ lookup('env', 'HOME') }}/.config/kitty/dracula.conf",
-      }
-    - {
-        src: "kitty/kitty.conf",
-        dest: "{{ lookup('env', 'HOME') }}/.config/kitty/kitty.conf",
-      }
+    - { src: "kitty/", dest: "{{ lookup('env', 'HOME') }}/.config/kitty/" }
 
 - name: make flameshot config folder
   tags:
@@ -105,8 +87,8 @@
   copy: src={{ item.src }} dest={{ item.dest }}
   with_items:
     - {
-        src: "flameshot/flameshot.ini",
-        dest: "{{ lookup('env', 'HOME') }}/.config/flameshot/flameshot.ini",
+        src: "flameshot/",
+        dest: "{{ lookup('env', 'HOME') }}/.config/flameshot/",
       }
 
 - name: make btop config folder
@@ -132,3 +114,95 @@
         src: "btop/btop.conf",
         dest: "{{ lookup('env', 'HOME') }}/.config/btop/btop.conf",
       }
+
+- name: make wofi config folder
+  tags:
+    - full-install
+    - users
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.config/wofi"
+    recurse: yes
+    state: directory
+
+- name: copy wofi files
+  tags:
+    - full-install
+    - users
+  copy: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+    - { src: "wofi/", dest: "{{ lookup('env', 'HOME') }}/.config/wofi/" }
+
+- name: make waybar config folder
+  tags:
+    - full-install
+    - users
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.config/waybar"
+    recurse: yes
+    state: directory
+
+- name: copy waybar files
+  tags:
+    - full-install
+    - users
+  copy: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+    - {
+        src: "waybar/",
+        dest: "{{ lookup('env', 'HOME') }}/.config/waybar/",
+        mode: 0755,
+      }
+
+- name: make wlogout config folder
+  tags:
+    - full-install
+    - users
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.config/wlogout"
+    recurse: yes
+    state: directory
+
+- name: copy wlogout files
+  tags:
+    - full-install
+    - users
+  copy: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+    - { src: "wlogout/", dest: "{{ lookup('env', 'HOME') }}/.config/wlogout/" }
+
+- name: make swaylock config folder
+  tags:
+    - full-install
+    - users
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.config/swaylock"
+    recurse: yes
+    state: directory
+
+- name: copy swaylock files
+  tags:
+    - full-install
+    - users
+  copy: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+    - {
+        src: "swaylock/",
+        dest: "{{ lookup('env', 'HOME') }}/.config/swaylock/",
+      }
+
+- name: make sdt config folder
+  tags:
+    - full-install
+    - users
+  file:
+    path: "/usr/share/sddm/themes/sdt"
+    recurse: yes
+    state: directory
+
+- name: copy swaylock files
+  tags:
+    - full-install
+    - users
+  copy: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+    - { src: "sdt/", dest: "/usr/share/sddm/themes/sdt" }
