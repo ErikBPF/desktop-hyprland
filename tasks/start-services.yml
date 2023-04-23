@@ -61,6 +61,7 @@
     - full-install
     - users
   copy: src={{ item.src }} dest={{ item.dest }}
+  become: true
   with_items:
     - { src: "networkmanager/", dest: "/etc/NetworkManager/conf.d" }
 
