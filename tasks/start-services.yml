@@ -63,7 +63,12 @@
   copy: src={{ item.src }} dest={{ item.dest }}
   become: true
   with_items:
-    - { src: "networkmanager/", dest: "/etc/NetworkManager/conf.d" }
+    - {
+        src: "networkmanager/",
+        dest: "/etc/NetworkManager/conf.d",
+        owner: erik,
+        group: erik,
+      }
 
 - name: start NetworkManager.service
   tags:

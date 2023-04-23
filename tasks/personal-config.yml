@@ -198,6 +198,8 @@
     path: "/usr/share/sddm/themes/sdt"
     recurse: yes
     state: directory
+  owner: erik
+  group: erik
   become: true
 
 - name: copy sdt files
@@ -222,6 +224,8 @@
     path: "/etc/sddm.conf.d"
     recurse: yes
     state: directory
+  owner: erik
+  group: erik
   become: true
 
 - name: copy sddm config files
@@ -231,7 +235,7 @@
   copy: src={{ item.src }} dest={{ item.dest }}
   become: true
   with_items:
-    - { src: "sddm/", dest: "/etc/sddm.conf.d/" }
+    - { src: "sddm/", dest: "/etc/sddm.conf.d/", owner: erik, group: erik }
 
 - name: copy sdt wallpaper
   tags:
@@ -243,6 +247,8 @@
     - {
         src: "files/sdt/wallpaper.jpg",
         dest: "/usr/share/sddm/themes/sdt/wallpaper.jpg",
+        owner: erik,
+        group: erik,
       }
 
 - name: make wayland-session config folder
@@ -253,6 +259,8 @@
     path: "/usr/share/wayland-sessions"
     recurse: yes
     state: directory
+  owner: erik
+  group: erik
   become: true
 
 - name: copy wayland-session config files
@@ -264,6 +272,8 @@
     - {
         src: "hypr/extras/hyprland.desktop",
         dest: "/usr/share/wayland-sessions/",
+        owner: erik,
+        group: erik,
       }
   become: true
 
