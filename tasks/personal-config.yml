@@ -198,8 +198,8 @@
     path: "/usr/share/sddm/themes/sdt"
     recurse: yes
     state: directory
-  owner: erik
-  group: erik
+    owner: erik
+    group: erik
   become: true
 
 - name: copy sdt files
@@ -224,8 +224,8 @@
     path: "/etc/sddm.conf.d"
     recurse: yes
     state: directory
-  owner: erik
-  group: erik
+    owner: erik
+    group: erik
   become: true
 
 - name: copy sddm config files
@@ -259,8 +259,8 @@
     path: "/usr/share/wayland-sessions"
     recurse: yes
     state: directory
-  owner: erik
-  group: erik
+    owner: erik
+    group: erik
   become: true
 
 - name: copy wayland-session config files
