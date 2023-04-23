@@ -1,0 +1,60 @@
+- name: install wm related packages
+  tags:
+    - full-install
+    - light-install
+    - packages
+  kewlfft.aur.aur:
+    name:
+      - hyprland
+      - jq
+      - mako
+      - waybar-hyprland
+      - swww
+      - swaylock-effects
+      - swayidle
+      - sway-audio-idle-inhibit-git
+      - wofi
+      - wlogout
+      - xdg-desktop-portal-hyprland-git
+      - swappy
+      - grim
+      - slurp
+      - wl-clipboard
+      - thunar
+      - polkit-gnome
+      - python-requests
+      - xkb-qwerty-fr
+      - brightnessctl
+      - bluez
+      - bluez-utils
+      - blueman
+      - network-manager-applet
+      - gvfs
+      - thunar-archive-plugin
+      - file-roller
+      - pacman-contrib
+      - ttf-jetbrains-mono-nerd
+      - noto-fonts-emoji
+      - lxappearance
+      - xfce4-settings
+      - sddm-git
+      - sddm-sugar-candy-git
+      - wlr-randr
+      - wlroots
+    use: yay
+    state: present
+    update_cache: false
+  ignore_errors: false
+
+- name: remove packages
+  tags:
+    - full-install
+    - light-install
+    - packages
+  package:
+    name:
+      - xdg-desktop-portal-gnome
+      - xdg-desktop-portal-gtk
+    state: absent
+    update_cache: no
+  become: true

@@ -16,6 +16,7 @@
       - neofetch
       - btop
       - nvtop
+      - starship
     use: yay
     state: present
     update_cache: false

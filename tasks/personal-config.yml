@@ -199,10 +199,86 @@
     recurse: yes
     state: directory
 
-- name: copy swaylock files
+- name: copy sdt files
+  tags:
+    - full-install
+    - users
+  copy: src={{ item.src }} dest={{ item.dest }}
+  owner: erik
+  group: erik
+  with_items:
+    - { src: "sdt/", dest: "/usr/share/sddm/themes/sdt" }
+
+- name: make sddm config folder
+  tags:
+    - full-install
+    - users
+  file:
+    path: "/etc/sddm.conf.d"
+    recurse: yes
+    state: directory
+
+- name: copy sddm config files
   tags:
     - full-install
     - users
   copy: src={{ item.src }} dest={{ item.dest }}
   with_items:
-    - { src: "sdt/", dest: "/usr/share/sddm/themes/sdt" }
+    - { src: "sddm/", dest: "/etc/sddm.conf.d" }
+
+- name: copy sdt wallpaper
+  tags:
+    - full-install
+    - users
+  copy: src={{ item.src }} dest={{ item.dest }}
+  become: true
+  with_items:
+    - {
+        src: "files/sdt/wallpaper.jpg",
+        dest: "/usr/share/sddm/themes/sdt/wallpaper.jpg",
+      }
+
+- name: make wayland-session config folder
+  tags:
+    - full-install
+    - users
+  file:
+    path: "/usr/share/wayland-sessions"
+    recurse: yes
+    state: directory
+
+- name: copy wayland-session config files
+  tags:
+    - full-install
+    - users
+  copy: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+    - { src: "hypr/extras/hyprland.desktop", dest: "/etc/sddm.conf.d/" }
+
+- name: copy start-hypr file
+  tags:
+    - full-install
+    - users
+  copy: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+    - { src: "hypr/extras/star-hypr", dest: "{ lookup('env', 'HOME') }}" }
+
+- name: copy starship file
+  tags:
+    - full-install
+    - users
+  copy: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+    - {
+        src: "starship/starship.toml",
+        dest: "{ lookup('env', 'HOME') }/.config/",
+      }
+
+- name: set gtk theme, cursor and icons
+  shell: >
+    xfconf-query -c xsettings -p /Net/ThemeName -s "Adwaita-dark" ;
+    xfconf-query -c xsettings -p /Net/IconThemeName -s "Adwaita-dark" ;
+    gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark" ;
+    gsettings set org.gnome.desktop.interface icon-theme "Adwaita-dark" ;
+    gsettings set org.gnome.desktop.interface cursor-theme Vimix-cursors ;
+    hyprctl setcursor Vimix-cursors 28;

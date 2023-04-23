@@ -46,15 +46,23 @@
     enabled: yes
   become: true
 
-- name: start wpa_supplicant.service
+- name: start sddm.service
   tags:
     - full-install
     - users
   ansible.builtin.service:
-    name: wpa_supplicant.service
+    name: sddm.service
     state: started
     enabled: yes
   become: true
+
+- name: copy networkmanager config files
+  tags:
+    - full-install
+    - users
+  copy: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+    - { src: "networkmanager/", dest: "/etc/NetworkManager/conf.d" }
 
 - name: start NetworkManager.service
   tags:

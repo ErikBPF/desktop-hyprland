@@ -6,7 +6,7 @@
   file:
     path: "{{ lookup('env', 'HOME') }}/.ssh"
     recurse: yes
-    mode: 750
+    mode: 0700
     state: directory
 
 - name: copy ssh files
@@ -19,20 +19,20 @@
     - {
         src: "ssh/id_rsa",
         dest: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa",
-        mode: 500,
+        mode: 0600,
       }
     - {
         src: "ssh/id_rsa.pub",
         dest: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa.pub",
-        mode: 750,
+        mode: 0640,
       }
     - {
         src: "ssh/id_ed25519",
         dest: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519",
-        mode: 500,
+        mode: 0600,
       }
     - {
         src: "ssh/id_ed25519.pub",
         dest: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519.pub",
-        mode: 750,
+        mode: 0640,
       }

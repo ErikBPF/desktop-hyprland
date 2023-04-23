@@ -15,6 +15,7 @@
       - postgresql-libs
       - dbeaver
       - postman-bin
+      - azure-storage-explorer
       - dashbinsh
       - unixodbc
       - azure-cli-bin
@@ -24,7 +25,6 @@
       - openssh
       - dhclient
       - dialog
-      - wpa_supplicant
       - wireless_tools
       - netctl
       - inetutils

@@ -15,5 +15,6 @@
       - lib32-pipewire-jack
       - pipewire-audio
       - pipewire
+      - pamixer
     state: present
   become: true
