@@ -273,7 +273,7 @@
     - users
   copy: src={{ item.src }} dest={{ item.dest }}
   with_items:
-    - { src: "hypr/extras/star-hypr", dest: "{ lookup('env', 'HOME') }}" }
+    - { src: "hypr/extras/start-hypr", dest: "{ lookup('env', 'HOME') }}/" }
 
 - name: copy starship file
   tags:
