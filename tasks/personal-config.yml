@@ -204,10 +204,14 @@
     - full-install
     - users
   copy: src={{ item.src }} dest={{ item.dest }}
-  owner: erik
-  group: erik
+
   with_items:
-    - { src: "sdt/", dest: "/usr/share/sddm/themes/sdt" }
+    - {
+        src: "sdt/",
+        dest: "/usr/share/sddm/themes/sdt",
+        owner: erik,
+        group: erik,
+      }
 
 - name: make sddm config folder
   tags:
