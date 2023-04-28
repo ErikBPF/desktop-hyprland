@@ -1,0 +1,21 @@
+#!/bin/bash
+MONITOR="Samsung Electric Company QBQ90 0x01000E00"
+MAIN="HDMI-A-1"
+WKS="workspace ID 1 (1) on monitor $MAIN"
+ENABLE_MONITORS=false
+while true
+do
+    sleep 5
+    hyprctl monitors | grep "$MONITOR" && hyprctl workspaces | grep "$WKS" || ENABLE_MONITORS=true
+    if $ENABLE_MONITORS ; then
+        hyprctl --batch "dispatch moveworkspacetomonitor 1 $MAIN;\
+        dispatch moveworkspacetomonitor 2 $MAIN;\
+        dispatch moveworkspacetomonitor 3 $MAIN ;\
+        dispatch moveworkspacetomonitor 4 $MAIN;\
+        dispatch moveworkspacetomonitor 5 $MAIN;\
+        dispatch moveworkspacetomonitor 6 $MAIN;\
+        dispatch moveworkspacetomonitor 7 $MAIN;\
+        dispatch moveworkspacetomonitor 8 $MAIN"
+        ENABLE_MONITORS=false
+    fi
+done

@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+
+#start swwww
+rm -rf .cache/swww/
+swww query || swww init
+swww img ~/.config/hypr/wallpaper.jpg
