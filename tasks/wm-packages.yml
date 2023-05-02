@@ -5,7 +5,7 @@
     - packages
   kewlfft.aur.aur:
     name:
-      - hyprland
+      - hyprland-git
       - jq
       - mako
       - waybar-hyprland
@@ -29,11 +29,13 @@
       - bluez-utils
       - blueman
       - network-manager-applet
+      - tailscale-systray-git
       - gvfs
       - thunar-archive-plugin
       - file-roller
       - pacman-contrib
       - ttf-jetbrains-mono-nerd
+      - nerd-fonts-git
       - noto-fonts-emoji
       - lxappearance
       - xfce4-settings

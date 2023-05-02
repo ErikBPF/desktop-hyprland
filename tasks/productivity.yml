@@ -18,6 +18,7 @@
       - libsecret
       - discord
       - brave-bin
+      - chromium
       - spotify
       - teams
       - unzip
@@ -26,6 +27,8 @@
       - unarchiver
       - gparted
       - onlyoffice-bin
+      - tailscale-git
+      - cloudflare-warp-bin
     use: yay
     state: present
     update_cache: false
