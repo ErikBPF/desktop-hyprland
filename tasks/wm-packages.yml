@@ -5,7 +5,7 @@
     - packages
   kewlfft.aur.aur:
     name:
-      - hyprland-git
+      # - hyprland-git
       - jq
       - mako
       - waybar-hyprland
