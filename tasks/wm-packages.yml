@@ -29,7 +29,7 @@
       - bluez-utils
       - blueman
       - network-manager-applet
-      - tailscale-systray-git
+      #  - tailscale-systray-git
       - gvfs
       - thunar-archive-plugin
       - file-roller
