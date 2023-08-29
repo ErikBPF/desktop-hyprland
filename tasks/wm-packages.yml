@@ -15,7 +15,7 @@
       - sway-audio-idle-inhibit-git
       - wofi
       - wlogout
-      - xdg-desktop-portal-hyprland-git
+      #  - xdg-desktop-portal-hyprland-git
       - swappy
       - grim
       - slurp
