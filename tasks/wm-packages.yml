@@ -39,7 +39,7 @@
       - noto-fonts-emoji
       - lxappearance
       - xfce4-settings
-      - sddm-git
+      # - sddm-git
       - sddm-sugar-candy-git
       - wlr-randr
       - wlroots
