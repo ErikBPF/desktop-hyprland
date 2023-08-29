@@ -8,7 +8,7 @@
       # - hyprland-git
       - jq
       - mako
-      - waybar-hyprland
+      # - waybar-hyprland
       - swww
       - swaylock-effects
       - swayidle
